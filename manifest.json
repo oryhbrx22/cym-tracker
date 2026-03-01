@@ -1,0 +1,21 @@
+{
+  "name": "CYM Leaders’ Tracker 2026",
+  "short_name": "CYM Tracker",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#10b981",
+  "description": "Church leadership devotion and meeting tracker.",
+  "icons": [
+    {
+      "src": "https://placehold.co/192x192/dc2626/ffffff?text=CYM",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://placehold.co/512x512/dc2626/ffffff?text=CYM",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
