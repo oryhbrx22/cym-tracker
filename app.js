@@ -181,10 +181,24 @@ function TrackerDashboard({ user, showAlert }) {
         
         try {
             // Replace this with your actual VAPID Public Key generated from the openssl command
-            const VAPID_PUBLIC_KEY = 'YOUR_VAPID_PUBLIC_KEY_STRING_HERE'; 
+            const VAPID_PUBLIC_KEY = 'const webpush = require('web-push');
+webpush.setVapidDetails(
+'mailto:example@yourdomain.org',
+vapidKeys.publicKey,
+vapidKeys.privateKey
+);
+const pushSubscription = ;
+webpush.sendNotification(pushSubscription, 'Your Push Payload Text');'; 
             
             // Basic validation to prevent crash if key is not set
-            if (VAPID_PUBLIC_KEY === 'YOUR_VAPID_PUBLIC_KEY_STRING_HERE' || VAPID_PUBLIC_KEY.length < 10) {
+            if (VAPID_PUBLIC_KEY === 'const webpush = require('web-push');
+webpush.setVapidDetails(
+'mailto:example@yourdomain.org',
+vapidKeys.publicKey,
+vapidKeys.privateKey
+);
+const pushSubscription = ;
+webpush.sendNotification(pushSubscription, 'Your Push Payload Text');' || VAPID_PUBLIC_KEY.length < 10) {
                 alert("Please configure the VAPID Public Key in the code (app.js handleEnablePush) to enable push notifications.");
                 return;
             }
