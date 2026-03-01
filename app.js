@@ -181,24 +181,10 @@ function TrackerDashboard({ user, showAlert }) {
         
         try {
             // Replace this with your actual VAPID Public Key generated from the openssl command
-            const VAPID_PUBLIC_KEY = 'const webpush = require('web-push');
-webpush.setVapidDetails(
-'mailto:example@yourdomain.org',
-vapidKeys.publicKey,
-vapidKeys.privateKey
-);
-const pushSubscription = ;
-webpush.sendNotification(pushSubscription, 'Your Push Payload Text');'; 
+            const VAPID_PUBLIC_KEY = 'YOUR_VAPID_PUBLIC_KEY_STRING_HERE'; 
             
             // Basic validation to prevent crash if key is not set
-            if (VAPID_PUBLIC_KEY === 'const webpush = require('web-push');
-webpush.setVapidDetails(
-'mailto:example@yourdomain.org',
-vapidKeys.publicKey,
-vapidKeys.privateKey
-);
-const pushSubscription = ;
-webpush.sendNotification(pushSubscription, 'Your Push Payload Text');' || VAPID_PUBLIC_KEY.length < 10) {
+            if (VAPID_PUBLIC_KEY === 'YOUR_VAPID_PUBLIC_KEY_STRING_HERE' || VAPID_PUBLIC_KEY.length < 10) {
                 alert("Please configure the VAPID Public Key in the code (app.js handleEnablePush) to enable push notifications.");
                 return;
             }
@@ -456,103 +442,4 @@ webpush.sendNotification(pushSubscription, 'Your Push Payload Text');' || VAPID_
                     <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-100 flex justify-end">
                         <button 
                             onClick={() => handleSubmit('mid')}
-                            disabled={status.end} // Cannot submit mid if end is already done (rare case but safe)
-                            className="btn-primary w-full sm:w-auto"
-                        >
-                            Submit Mid-Month Report (Days 1-15)
-                        </button>
-                    </div>
-                )}
-            </div>
-
-            {/* Meeting Tracker (Visible but only submittable at end month) */}
-            <div className="card mb-8">
-                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
-                    <h3 className="font-bold text-base sm:text-lg flex items-center gap-2">
-                        <div className="icon-users text-[var(--primary-color)]"></div>
-                        Meeting Attendance
-                    </h3>
-                    <div className="flex gap-3 text-xs flex-wrap">
-                        <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500"></span> Present</div>
-                        <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500"></span> Absent</div>
-                        <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-gray-200"></span> N/A</div>
-                    </div>
-                </div>
-
-                <div className="space-y-4 sm:space-y-6">
-                    {[
-                        { id: 'w12_discipleship', label: 'W12 Discipleship', desc: 'Who did you disciple?' },
-                        { id: 'cell_group', label: 'Cell Group', desc: 'List of attendees' },
-                        { id: 'w12_meeting', label: 'W12 Meeting', desc: 'Notes' },
-                        { id: 'sunday_services', label: 'Sunday Services', desc: 'Service time/notes' },
-                        { id: 'cym_night', label: 'CYM Night', desc: 'Notes' },
-                        { id: 'thursday_training', label: 'Thursday Training', desc: 'Notes' },
-                        { id: 'prayer_meeting', label: 'Prayer Meeting', desc: 'Notes' },
-                    ].map(m => (
-                        <div key={m.id} className="bg-gray-50/50 rounded-lg p-3 sm:p-4 border border-gray-100">
-                            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-0">
-                                <div className="w-full lg:w-1/4">
-                                    <h4 className="font-semibold text-sm sm:text-base text-gray-800">{m.label}</h4>
-                                </div>
-                                
-                                <div className="overflow-x-auto pb-2 -mx-3 px-3 sm:mx-0 sm:px-0 sm:pb-0 scrollbar-hide">
-                                    <div className="flex gap-2 min-w-max justify-start lg:justify-center flex-1">
-                                        {meetings[m.id].map((state, idx) => (
-                                            <div key={idx} className="flex flex-col items-center gap-1 sm:gap-2">
-                                                <span className="text-[10px] sm:text-xs text-gray-400 font-bold">W{idx+1}</span>
-                                                <button
-                                                    onClick={() => updateMeeting(m.id, idx)}
-                                                    disabled={status.end}
-                                                    className={`
-                                                        w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all flex-shrink-0
-                                                        ${state === 0 ? 'bg-white border-2 border-gray-200 text-gray-300 hover:border-gray-300' : ''}
-                                                        ${state === 1 ? 'bg-green-500 text-white shadow-md shadow-green-200 scale-105' : ''}
-                                                        ${state === 2 ? 'bg-red-500 text-white shadow-md shadow-red-200 scale-105' : ''}
-                                                        ${status.end ? 'cursor-not-allowed opacity-60' : 'cursor-pointer active:scale-95'}
-                                                    `}
-                                                >
-                                                    {state === 1 && <div className="icon-check text-xl sm:text-2xl"></div>}
-                                                    {state === 2 && <div className="icon-x text-xl sm:text-2xl"></div>}
-                                                    {state === 0 && <span className="text-lg sm:text-xl">-</span>}
-                                                </button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div className="mt-2 sm:mt-3">
-                                <input 
-                                    type="text"
-                                    placeholder={`List of names / Remarks for ${m.label}...`}
-                                    value={meetingNotes[m.id] || ''}
-                                    onChange={(e) => updateMeetingNote(m.id, e.target.value)}
-                                    disabled={status.end}
-                                    className="w-full text-sm px-3 py-2 bg-white border border-gray-200 rounded-md focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] outline-none transition-colors"
-                                />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                 {!status.end && (
-                    <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-100 flex justify-end">
-                        <button 
-                            onClick={() => handleSubmit('end')}
-                            className="btn-primary w-full sm:w-auto"
-                        >
-                            Submit End-Month Report (Full)
-                        </button>
-                    </div>
-                )}
-            </div>
-        </Layout>
-    );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <ErrorBoundary>
-    <App />
-  </ErrorBoundary>
-);
+                            disabled={status.end} // Cannot sub
